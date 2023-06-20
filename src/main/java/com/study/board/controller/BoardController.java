@@ -1,5 +1,6 @@
 package com.study.board.controller;
 
+import org.springframework.ui.Model;
 import com.study.board.entity.Board;
 import com.study.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,17 @@ public class BoardController {
 
     @PostMapping("/board/writePro")
     public String boardWritePro(Board board){
-
         boardService.write(board);
-
-
         return "";
+    }
+
+    @GetMapping("/board/list")
+    public String boardList(Model model){
+
+        model.addAttribute("list",boardService.boardList());
+
+        return "boardlist";
+
     }
 
 
